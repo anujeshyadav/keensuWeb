@@ -1,11 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import LayoutOne from "../../layouts/LayoutOne";
 import { Container, Row, Col } from "reactstrap";
-import LiveAstro from "../../assets/img/team/live-astro.jpg";
-import MatchSearch from "./MatchSearch";
 import axiosConfig from "../../axiosConfig";
-import astrologinbg from "../../assets/img/astrologin-bg.jpg";
 
 class LiveAstrologer extends React.Component {
   constructor(props) {
@@ -68,7 +64,6 @@ class LiveAstrologer extends React.Component {
               <Col lg="8">
                 <h3>Live Sellers</h3>
               </Col>
-              <Col lg="4">{/* <MatchSearch /> */}</Col>
             </Row>
             <Row>
               {this.state.liveastrilist.length > 0 ? (
