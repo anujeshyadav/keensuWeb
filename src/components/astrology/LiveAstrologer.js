@@ -2,6 +2,7 @@ import React from "react";
 import LayoutOne from "../../layouts/LayoutOne";
 import { Container, Row, Col } from "reactstrap";
 import axiosConfig from "../../axiosConfig";
+import astro from "../../assets/img/astro-4.jpg";
 
 class LiveAstrologer extends React.Component {
   constructor(props) {
@@ -29,9 +30,10 @@ class LiveAstrologer extends React.Component {
 
   handleStart = async () => {
     await axiosConfig
-      .get(`/user/listLiveStreamAstro`)
+      .get(`/user/liveStreamlist`)
       .then((res) => {
         this.handleSetInterval();
+        // console.log(res.data);
         console.log(res.data.data);
         this.setState({ liveastrilist: res.data.data });
       })
@@ -47,7 +49,7 @@ class LiveAstrologer extends React.Component {
     // this.props.history.push("/yourlivestreming");
     // astroId
     localStorage.setItem("astroId", data?.astroAccount?._id);
-    console.log(data?.astroAccount?._id);
+    // console.log(data?.astroAccount?._id);
     this.props.history.push({
       pathname: "/livestreaming",
       state: data,
@@ -82,7 +84,8 @@ class LiveAstrologer extends React.Component {
                           className="liveimg"
                         >
                           <img
-                            src={value?.astroAccount?.img[0]}
+                            // src={value?.astroAccount?.img[0]}
+                            src={astro}
                             alt=""
                             height={220}
                             width={100}
@@ -94,7 +97,7 @@ class LiveAstrologer extends React.Component {
                             <div class="zoom-in-zoom-out">
                               <span style={{ marginLeft: 20 }}>Live</span>
                             </div>
-                            <h3>{value?.astroAccount?.fullname}</h3>
+                            <h3>{value?.channelName}</h3>
                           </span>
                         </div>
                         {/* </Link> */}

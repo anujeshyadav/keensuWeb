@@ -20,7 +20,7 @@ function LiveVideonew() {
   const location = useLocation();
 
   const rtcProps = {
-    appId: "7d1f07c76f9d46be86bc46a791884023",
+    appId: "211ddf5d3ed341acaf8f7608e94b7c91",
 
     channel: chanel,
     layout: 1,
@@ -59,7 +59,14 @@ function LiveVideonew() {
   }, []);
   return (
     <div>
-      <LayoutOne headerTop="visible">
+      <>
+        <Row>
+          <Col>
+            <div className="container d-flex justify-content-center mt-2">
+              <h2>Live Chat with Seller</h2>
+            </div>
+          </Col>
+        </Row>
         {Videocall ? (
           <>
             <div
@@ -98,7 +105,7 @@ function LiveVideonew() {
             </div>
           </>
         ) : null}
-      </LayoutOne>
+      </>
     </div>
   );
 }

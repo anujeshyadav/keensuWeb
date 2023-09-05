@@ -300,7 +300,7 @@ class ChatApp extends React.Component {
       <div className="">
         <div class="app rt-chats">
           <div class="messages">
-            <div className="chat-header">
+            {/* <div className="chat-header">
               <p>
                 <span>
                   <img
@@ -326,7 +326,7 @@ class ChatApp extends React.Component {
                   </Button>
                 </div>
               </span>
-            </div>
+            </div> */}
             <div class="messages-history">
               <ChatAppMassage
                 roomChatData={
