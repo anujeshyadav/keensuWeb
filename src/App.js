@@ -590,7 +590,7 @@ const App = (props) => {
                     component={WalletMoney}
                   />
                   <Route
-                    path={process.env.PUBLIC_URL + "/liveSellers"}
+                    path={process.env.PUBLIC_URL + "/liveSellers/:id"}
                     component={LiveAstrologer}
                   />
                   <Route
