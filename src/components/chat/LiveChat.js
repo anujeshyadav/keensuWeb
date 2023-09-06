@@ -25,9 +25,11 @@ class ChatApp extends React.Component {
       data: {},
       sendbutton: "",
       Activeastro: {},
+      liveSellerdata: {},
+      // liveUserdata: {},
       CurrentRoomid: "",
       roomChatData: [],
-      msg: "hello",
+      msg: "",
       roomId: "",
       modal: false,
       modalone: false,
@@ -52,34 +54,34 @@ class ChatApp extends React.Component {
     });
   }
 
-  otpHandler = async (e) => {
-    e.preventDefault();
-    let payload = {
-      mobile: parseInt(this.state.mobile),
-      otp: parseInt(this.state.otp),
-    };
-    await varifyOtp(payload)
-      .then((response) => {
-        if (response.status === true) {
-          this.setState({ otpMsg: response.msg });
-          localStorage.setItem("userData", JSON.stringify(response?.data));
-          localStorage.setItem("token", JSON.stringify(response?.token));
-          localStorage.setItem("user_id", JSON.stringify(response?.data?._id));
-          console.log(response?.data?._id);
-          Fetchuserdetail();
+  // otpHandler = async (e) => {
+  //   e.preventDefault();
+  //   let payload = {
+  //     mobile: parseInt(this.state.mobile),
+  //     otp: parseInt(this.state.otp),
+  //   };
+  //   await varifyOtp(payload)
+  //     .then((response) => {
+  //       if (response.status === true) {
+  //         this.setState({ otpMsg: response.msg });
+  //         localStorage.setItem("userData", JSON.stringify(response?.data));
+  //         localStorage.setItem("token", JSON.stringify(response?.token));
+  //         localStorage.setItem("user_id", JSON.stringify(response?.data?._id));
+  //         console.log(response?.data?._id);
+  //         Fetchuserdetail();
 
-          localStorage.setItem(
-            "user_mobile_no",
-            JSON.stringify(response?.data?.mobile)
-          );
-          if (response.msg === "otp verified") {
-            this.setState({ ToggleMode: true });
-            this.toggle();
-          }
-        }
-      })
-      .catch((err) => console.log(err));
-  };
+  //         localStorage.setItem(
+  //           "user_mobile_no",
+  //           JSON.stringify(response?.data?.mobile)
+  //         );
+  //         if (response.msg === "otp verified") {
+  //           this.setState({ ToggleMode: true });
+  //           this.toggle();
+  //         }
+  //       }
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
   changeHandler = (e) => {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
@@ -184,90 +186,89 @@ class ChatApp extends React.Component {
     } else swal("User Not login", "Try to login First");
   };
   componentDidMount = () => {
+    debugger;
     this.handleliveChat();
     console.log(this.props?.Liveastrodata);
-    const astroId = localStorage.getItem("astroId");
+    this.setState({ liveSellerdata: this.props?.Liveastrodata });
+    let userdata = JSON.parse(localStorage.getItem("userCredential"));
+    console.log(userdata?.id);
+    console.log(this.props?.Liveastrodata?.astroAccount);
     axiosConfig
-      .get(`/admin/getoneAstro/${astroId}`)
+      .get(`/user/liveChat_byseller/${this.props?.Liveastrodata?.astroAccount}`)
       .then((res) => {
-        console.log(res.data.data);
-        this.setState({ Activeastro: res?.data?.data });
+        console.log(res.data?.data);
+        this.setState({ roomChatData: res.data?.data });
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  handlechat = () => {
-    axiosConfig
-      .get(`/user/allchatwithuser/${this.state.roomId}`)
-      .then((response) => {
-        console.log(response?.data?.data);
-        if (response.data.status === true) {
-          this.setState({ roomChatData: response?.data.data });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  // getChatRoomId = async (user, index) => {
-  //   this.setState({ sendbutton: user.astroid?._id });
-  //   this.setState({ Index: index });
-  //   localStorage.setItem("videoCallAstro_id", user?.astroid?._id);
-  //   console.log("userdata", user);
-  //   this.setState({ astroId: user?.astroid?._id, roomId: user?.roomid });
-  //   this.handlechat();
+  // handlechat = () => {
+  //   axiosConfig
+  //     .get(`/user/allchatwithuser/${this.state.roomId}`)
+  //     .then((response) => {
+  //       console.log(response?.data?.data);
+  //       if (response.data.status === true) {
+  //         this.setState({ roomChatData: response?.data.data });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
   // };
 
   handleliveChat = () => {
     setInterval(() => {
-      const astroId = localStorage.getItem("astroId");
       axiosConfig
-        .get(`/user/liveChat_msgbyastro/${astroId}`)
+        .get(
+          `/user/liveChat_byseller/${this.props?.Liveastrodata?.astroAccount}`
+        )
         .then((res) => {
-          console.log(res);
-          this.setState({ roomChatData: res?.data.data });
+          console.log(res.data?.data);
+
+          this.setState({ roomChatData: res.data?.data });
         })
         .catch((err) => {
           console.log(err);
         });
     }, 2000);
   };
-  handleStatusAstroviewOne = () => {
-    setInterval(() => {
-      const astroId = localStorage.getItem("astroId");
-      axiosConfig
-        .get(`/admin/getoneAstro/${astroId}`)
-        .then((res) => {
-          console.log(res.data.data);
-          this.setState({ Activeastro: res?.data?.data });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }, 5000);
-  };
+  // handleStatusAstroviewOne = () => {
+  //   setInterval(() => {
+  //     const astroId = localStorage.getItem("astroId");
+  //     axiosConfig
+  //       .get(`/admin/getoneAstro/${astroId}`)
+  //       .then((res) => {
+  //         console.log(res.data.data);
+  //         this.setState({ Activeastro: res?.data?.data });
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }, 5000);
+  // };
 
   submitHandler = async (e) => {
     e.preventDefault();
+    let sellerid = this.state.liveSellerdata?.astroAccount;
+    let userdata = JSON.parse(localStorage.getItem("userCredential"));
+    console.log(userdata?.id);
 
-    const astroId = localStorage.getItem("astroId");
-    let userid = JSON.parse(localStorage.getItem("user_id"));
     console.log(this.state.msg);
-    if (userid) {
-      if (this.state.msg != "") {
-        let payload = {
-          astroid: astroId,
-          userid: userid,
-          msg: this.state.msg,
-        };
-        axiosConfig.post(`/user/astro_liveChat`, payload).then((res) => {
-          console.log(res);
-          this.setState({ msg: "" });
-        });
-      } else swal("Input filed is blank", "Fill it before send");
-    } else this.modalOpen();
+    if (this.state.msg != "") {
+      debugger;
+      let payload = {
+        sellerid: sellerid,
+        userid: userdata?.id,
+        msg: this.state.msg,
+      };
+      axiosConfig.post(`/user/seller_liveChat`, payload).then((res) => {
+        debugger;
+        console.log(res);
+        this.setState({ msg: "" });
+      });
+    } else swal("Input filed is blank", "Fill it before send");
   };
 
   handleChange = (e) => {
@@ -276,25 +277,25 @@ class ChatApp extends React.Component {
     });
   };
 
-  handlerating = (e) => {
-    e.preventDefault();
-    sessionStorage.setItem("typeofcall", "Livestream");
-    this.props.history.push("/astrorating");
-  };
+  // handlerating = (e) => {
+  //   e.preventDefault();
+  //   sessionStorage.setItem("typeofcall", "Livestream");
+  //   this.props.history.push("/astrorating");
+  // };
 
-  modalOpen = () => {
-    let userid = JSON.parse(localStorage.getItem("user_id"));
-    if (userid) {
-      this.setState({ ToggleMode: true });
-      this.toggle();
-      this.componentDidMount();
-      this.handleStatusAstroviewOne();
-    } else {
-      this.toggleone();
+  // modalOpen = () => {
+  //   let userid = JSON.parse(localStorage.getItem("user_id"));
+  //   if (userid) {
+  //     this.setState({ ToggleMode: true });
+  //     this.toggle();
+  //     this.componentDidMount();
+  //     this.handleStatusAstroviewOne();
+  //   } else {
+  //     // this.toggleone();
 
-      // swal("User Not login", "Try to login First");
-    }
-  };
+  //     // swal("User Not login", "Try to login First");
+  //   }
+  // };
   render() {
     return (
       <div className="">
@@ -449,7 +450,7 @@ class ChatApp extends React.Component {
           </>
         ) : (
           <>
-            <Modal
+            {/* <Modal
               size="md"
               style={{ maxWidth: "600px", width: "100%" }}
               isOpen={this.state.modalone}
@@ -515,7 +516,7 @@ class ChatApp extends React.Component {
                   </div>
                 </div>
               </ModalBody>
-            </Modal>
+            </Modal> */}
           </>
         )}
       </div>

@@ -356,14 +356,23 @@ const App = (props) => {
                   <Route
                     exact
                     path={process.env.PUBLIC_URL + "/"}
-                    component={HomeFurnitureTwo}
+                    component={
+                      <>
+                        <h3>404 Not found </h3>
+                      </>
+                    }
                   />
-
-                  <Route
+                  {/* <Route
                     exact
                     path={process.env.PUBLIC_URL + "/"}
                     component={HomeFurnitureTwo}
-                  />
+                  /> */}
+
+                  {/* <Route
+                    exact
+                    path={process.env.PUBLIC_URL + "/"}
+                    component={HomeFurnitureTwo}
+                  /> */}
 
                   {/* astologo route  */}
 

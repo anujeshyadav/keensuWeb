@@ -15,7 +15,7 @@ function LiveVideonew() {
   const [Videocall, setVideocall] = useState(true);
   const [chanel, setchannel] = useState("");
   const [token, settoken] = useState("");
-  const [userdata, setUserData] = useState({});
+  // const [userdata, setUserData] = useState({});
   const history = useHistory();
 
   const location = useLocation();
@@ -41,7 +41,7 @@ function LiveVideonew() {
     EndCall: () => {
       setVideocall(false);
       sessionStorage.setItem("typeofcall", "LiveStreaming");
-
+      window.close();
       // history.push({
       //   pathname: "/astrorating",
       // });
@@ -49,17 +49,17 @@ function LiveVideonew() {
   };
   useEffect(() => {
     let userdata = JSON.parse(localStorage.getItem("userCredential"));
-    console.log(userdata);
-    setUserData(userdata);
-    console.log(location.state);
+    // console.log(userdata);
+    // setUserData(userdata);
+    // console.log(location.state);
     const channel = location?.state?.channelName;
     const token = location?.state?.token;
     settoken(token);
     setchannel(channel);
     console.log(channel);
 
-    let userId = JSON.parse(localStorage.getItem("user_id"));
-    const astroid = localStorage.getItem("astroId");
+    // let userId = JSON.parse(localStorage.getItem("user_id"));
+    // const astroid = localStorage.getItem("astroId");
   }, []);
   return (
     <div>
@@ -105,7 +105,7 @@ function LiveVideonew() {
                 <div>
                   <LiveChat
                     Liveastrodata={location.state}
-                    liveuserdata={userdata}
+                    // liveuserdata={userdata}
                   />
                 </div>
               </div>

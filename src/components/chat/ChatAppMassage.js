@@ -26,21 +26,21 @@ class ChatAppMassage extends React.Component {
                       <div key={index} className="message">
                         <div class="message-body">
                           <Row>
-                            {chat?.userid?.userimg && (
+                            {/* {chat?.userid?.userimg && (
                               <Col lg="4">
                                 <img
                                   style={{ borderRadius: "50%" }}
                                   width="40px"
                                   height="40px"
-                                  src={chat?.userid?.userimg}
+                                  // src={chat?.userid?.userimg}
                                 />
                               </Col>
-                            )}
+                            )} */}
 
                             <Col lg="">
                               <Row>
                                 <h6 className="container">
-                                  <b> {chat?.userid?.fullname}</b>
+                                  <b> {chat?.username}</b>
                                 </h6>
                               </Row>
                               <Row>
