@@ -185,7 +185,7 @@ class ChatApp extends React.Component {
   };
   componentDidMount = () => {
     this.handleliveChat();
-    console.log(this.props);
+    console.log(this.props?.Liveastrodata);
     const astroId = localStorage.getItem("astroId");
     axiosConfig
       .get(`/admin/getoneAstro/${astroId}`)

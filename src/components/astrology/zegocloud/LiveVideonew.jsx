@@ -15,6 +15,7 @@ function LiveVideonew() {
   const [Videocall, setVideocall] = useState(true);
   const [chanel, setchannel] = useState("");
   const [token, settoken] = useState("");
+  const [userdata, setUserData] = useState({});
   const history = useHistory();
 
   const location = useLocation();
@@ -47,6 +48,9 @@ function LiveVideonew() {
     },
   };
   useEffect(() => {
+    let userdata = JSON.parse(localStorage.getItem("userCredential"));
+    console.log(userdata);
+    setUserData(userdata);
     console.log(location.state);
     const channel = location?.state?.channelName;
     const token = location?.state?.token;
@@ -99,7 +103,10 @@ function LiveVideonew() {
                 }}
               >
                 <div>
-                  <LiveChat Liveastrodata={location.state} />
+                  <LiveChat
+                    Liveastrodata={location.state}
+                    liveuserdata={userdata}
+                  />
                 </div>
               </div>
             </div>

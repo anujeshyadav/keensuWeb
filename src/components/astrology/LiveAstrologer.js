@@ -34,7 +34,7 @@ class LiveAstrologer extends React.Component {
       .then((res) => {
         this.handleSetInterval();
         // console.log(res.data);
-        console.log(res.data.data);
+        // console.log(res.data.data);
         this.setState({ liveastrilist: res.data.data });
       })
       .catch((err) => {
@@ -43,7 +43,18 @@ class LiveAstrologer extends React.Component {
   };
   componentDidMount() {
     let id = this.props?.match?.params?.id;
-    console.log(id);
+    // console.log(id);
+    let Url = "https://keensuk.com/razorland/api/ApiCommonController";
+    axiosConfig
+      .get(`${Url}/viewoneusers/${id}`)
+      .then((res) => {
+        // console.log(res?.data.data[0]);
+        let user = res?.data.data[0];
+        localStorage.setItem("userCredential", JSON.stringify(user));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     this.handleStart(id);
   }
 
