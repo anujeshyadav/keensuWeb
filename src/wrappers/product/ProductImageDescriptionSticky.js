@@ -335,7 +335,7 @@ const ProductImageDescriptionSticky = ({
                             console.log(error.response);
                           });
                       } else {
-                        history.push("/login-register");
+                        // history.push("/login-register");
                       }
                     }}
                   >

@@ -42,7 +42,9 @@ class LiveAstrologer extends React.Component {
       });
   };
   componentDidMount() {
-    this.handleStart();
+    let id = this.props?.match?.params?.id;
+    console.log(id);
+    this.handleStart(id);
   }
 
   handleastrolive = (data) => {
@@ -92,7 +94,11 @@ class LiveAstrologer extends React.Component {
                           />
                           {/* <img src={LiveAstro} alt="" width={100} /> */}
                         </div>
-                        <div className="livecont">
+
+                        <div
+                          onClick={() => this.handleastrolive(value)}
+                          className="livecont"
+                        >
                           <span>
                             <div class="zoom-in-zoom-out">
                               <span style={{ marginLeft: 20 }}>Live</span>

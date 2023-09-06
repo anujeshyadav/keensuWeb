@@ -34,16 +34,16 @@ function LiveVideonew() {
     ["user-left"]: (user) => {
       setVideocall(false);
       sessionStorage.setItem("typeofcall", "LiveStreaming");
-      history.push("/astrorating");
-      Toast("Astro Leave the Live Streaming");
+      // history.push("/astrorating");
+      Toast("Seller Leave the Live Streaming");
     },
     EndCall: () => {
       setVideocall(false);
       sessionStorage.setItem("typeofcall", "LiveStreaming");
 
-      history.push({
-        pathname: "/astrorating",
-      });
+      // history.push({
+      //   pathname: "/astrorating",
+      // });
     },
   };
   useEffect(() => {

@@ -981,7 +981,7 @@ const App = (props) => {
                     path={process.env.PUBLIC_URL + "/Otp"}
                     component={Otp}
                   />
-                  <Route
+                  {/* <Route
                     render={() =>
                       localStorage.getItem("auth-token") ? (
                         <>
@@ -1005,7 +1005,7 @@ const App = (props) => {
                         />
                       )
                     }
-                  />
+                  /> */}
                   {/* <Route
                   path={process.env.PUBLIC_URL + "/wishlist"}
                   component={Wishlist}

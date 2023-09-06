@@ -174,7 +174,7 @@ const IconGroup = ({
         </button>
         <div className="account-dropdown">
           <ul>
-            {!localStorage.getItem("token") ? (
+            {/* {!localStorage.getItem("token") ? (
               <>
                 <li>
                   <Link to={process.env.PUBLIC_URL + "/login-register"}>
@@ -255,11 +255,7 @@ const IconGroup = ({
                     Call History List
                   </Link>
                 </li>
-                {/* <li>
-                  <Link to={process.env.PUBLIC_URL + "/uservideohistory"}>
-                    Videocall History List
-                  </Link>
-                </li> */}
+               
                 <li>
                   <Link to={process.env.PUBLIC_URL + "/userchathistory"}>
                     Chat/Video History List
@@ -274,61 +270,18 @@ const IconGroup = ({
                 <li>
                   <Link
                     to={process.env.PUBLIC_URL + "/"}
-                    // onClick={(e) =>{(
-                    //   window.localStorage.clear()
-
-                    //   //localStorage.removeItem("auth-token","userInfo")
-                    // )}
+                  
                     onClick={(e) => handleLogout()}
-                    //}
+                 
                   >
                     Logout
                   </Link>
                 </li>
               </>
-            )}
+            )} */}
           </ul>
         </div>
       </div>
-      {/* <div className="same-style header-compare">
-        <Link to={process.env.PUBLIC_URL + "/compare"}>
-          <i className="pe-7s-shuffle" />
-          <span className="count-style">
-            {compareData && compareData.length ? compareData.length : 0}
-          </span>
-        </Link>
-      </div> */}
-      {/* <div className="same-style header-wishlist">
-        <Link to={process.env.PUBLIC_URL + '/wishlist'}>
-          <i className="pe-7s-like" />
-          <span className="count-style">
-            {wish && wish.length ? wish.length : 0}
-          </span>
-        </Link>
-      </div> */}
-
-      {/* <div className="same-style cart-wrap d-none d-lg-block">
-        <button className="icon-cart" onClick={(e) => handleClick(e)}>
-          <i className="pe-7s-shopbag" />
-          <span className="count-style">
-            {carts && carts.length ? carts.length : 0}
-          </span>
-        </button>
-       
-        <MenuCart
-          carts={carts}
-          currency={currency}
-          deleteFromCart={deleteFromCart}
-        />
-      </div>
-      <div className="same-style cart-wrap d-block d-lg-none">
-        <Link className="icon-cart" to={process.env.PUBLIC_URL + '/cart'}>
-          <i className="pe-7s-shopbag" />
-          <span className="count-style">
-            {carts && carts.length ? carts.length : 0}
-          </span>
-        </Link>
-      </div> */}
 
       <div className="same-style mobile-off-canvas d-block d-lg-none">
         <button
