@@ -33,15 +33,15 @@ function LiveVideonew() {
 
   const callbacks = {
     ["user-left"]: (user) => {
+      swal("Seller Leave the Live Streaming");
       setVideocall(false);
-      sessionStorage.setItem("typeofcall", "LiveStreaming");
-      // history.push("/astrorating");
-      Toast("Seller Leave the Live Streaming");
+      window.history.back();
     },
     EndCall: () => {
       setVideocall(false);
-      sessionStorage.setItem("typeofcall", "LiveStreaming");
-      window.close();
+      // sessionStorage.setItem("typeofcall", "LiveStreaming");
+      window.history.back();
+
       // history.push({
       //   pathname: "/astrorating",
       // });
