@@ -3,6 +3,7 @@ import React from "react";
 import "../../assets/scss/chat.scss";
 import { Col, Row } from "reactstrap";
 import { CloudLightning } from "react-feather";
+import image from "../../assets/img/userpic.png";
 
 class ChatAppMassage extends React.Component {
   constructor(props) {
@@ -16,6 +17,10 @@ class ChatAppMassage extends React.Component {
         {this.props?.roomChatData?.length
           ? this.props?.roomChatData
               .map((chat, index) => {
+                let userdata = JSON.parse(
+                  localStorage.getItem("userCredential")
+                );
+                console.log(userdata?.username);
                 return (
                   <>
                     {chat.type === "user" ? (
@@ -26,16 +31,14 @@ class ChatAppMassage extends React.Component {
                       <div key={index} className="message">
                         <div class="message-body">
                           <Row>
-                            {/* {chat?.userid?.userimg && (
-                              <Col lg="4">
-                                <img
-                                  style={{ borderRadius: "50%" }}
-                                  width="40px"
-                                  height="40px"
-                                  // src={chat?.userid?.userimg}
-                                />
-                              </Col>
-                            )} */}
+                            <Col>
+                              <img
+                                style={{ borderRadius: "50%" }}
+                                width="40px"
+                                height="40px"
+                                src={image}
+                              />
+                            </Col>
 
                             <Col lg="">
                               <Row>

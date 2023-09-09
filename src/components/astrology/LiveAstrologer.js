@@ -50,7 +50,7 @@ class LiveAstrologer extends React.Component {
     axiosConfig
       .get(`${Url}/viewoneusers/${id}`)
       .then((res) => {
-        // console.log(res?.data.data[0]);
+        console.log(res?.data.data[0]);
         let user = res?.data.data[0];
         localStorage.setItem("userCredential", JSON.stringify(user));
       })

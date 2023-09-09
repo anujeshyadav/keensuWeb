@@ -191,7 +191,7 @@ class ChatApp extends React.Component {
     console.log(this.props?.Liveastrodata);
     this.setState({ liveSellerdata: this.props?.Liveastrodata });
     let userdata = JSON.parse(localStorage.getItem("userCredential"));
-    console.log(userdata?.id);
+    console.log(userdata?.username);
     console.log(this.props?.Liveastrodata?.astroAccount);
     axiosConfig
       .get(`/user/liveChat_byseller/${this.props?.Liveastrodata?.astroAccount}`)
@@ -253,9 +253,9 @@ class ChatApp extends React.Component {
     e.preventDefault();
     let sellerid = this.state.liveSellerdata?.astroAccount;
     let userdata = JSON.parse(localStorage.getItem("userCredential"));
-    console.log(userdata?.id);
+    console.log(userdata);
 
-    console.log(this.state.msg);
+    // console.log(this.state.msg);
     if (this.state.msg != "") {
       debugger;
       let payload = {
